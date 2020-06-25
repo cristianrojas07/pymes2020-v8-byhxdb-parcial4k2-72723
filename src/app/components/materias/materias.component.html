@@ -1,0 +1,84 @@
+<div class="container" *ngIf="AccionABMC == 'L'" >
+  <h3 *ngIf="AccionABMC == 'L'">{{Titulo}} <small *ngIf="AccionABMC == 'L'">{{TituloAccionABMC[AccionABMC]}}</small></h3>
+  <div>
+      <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" (click)="Agregar()"><span class="fas fa-plus"> </span> Agregar Materia</button>
+      </div>
+      <br>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+              <th class="text-center">ID Materia</th>
+              <th class="text-center">Año de Materia</th>
+              <th class="text-center">Nombre de Materia</th>
+              <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let materia of Materias">
+              <td class="text-center">{{materia.IdMateria}}</td>
+              <td class="text-center">{{materia.MateriaAnio }}</td>
+              <td class="text-center">{{materia.MateriaNombre || uppercase}}</td>
+              <td class="text-center text-nowrap">
+                <button type="button" class="btn btn-sm btn-outline-primary" title="Modificar" (click)="Modificar(materia)"><span class="fas fa-pencil-alt"></span>
+                </button>
+                &nbsp;
+                <button type="button" class="btn btn-sm btn-outline-danger" title="Eliminar" (click)="Eliminar(materia)"><span class="fas fa-times"></span>
+                </button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+<div class="row ">
+    <div class="col-sm-2"></div>
+    <div class="col">
+      <!-- Registro en Alta y Modificacion -->
+    <h3 *ngIf="AccionABMC != 'L'">{{Titulo}} <small *ngIf="AccionABMC != 'label'">{{TituloAccionABMC[AccionABMC]}}</small></h3>
+    <br>
+    <form name="formGroup" [formGroup]='formGroup' *ngIf="AccionABMC != 'L'" class="bg-light border p-3 form-horizontal">
+      <br>
+      <fieldset>
+        <!--campo año materia-->
+        <div class="row form-group justify-content-center">
+          <label class="col-form-label col-sm-3" for="MateriaAnio">Año Materia <span class="text-danger">*</span></label>
+          <div class="col-sm-8">
+            <input type="text" name="MateriaAnio" autocomplete="off" class="form-control" formControlName="MateriaAnio" [ngClass]="{'is-invalid':(formGroup.controls.MateriaAnio.touched || formGroup.controls.MateriaAnio.dirty || submitted) && formGroup.controls.MateriaAnio.errors, 'is-valid': !formGroup.controls.MateriaAnio.errors}" />
+            <span class="text-danger" *ngIf="(formGroup.controls.MateriaAnio.touched || formGroup.controls.MateriaAnio.dirty || submitted) && formGroup.controls.MateriaAnio.errors?.required"> Dato requerido. </span>
+            <span class="text-danger" *ngIf="(formGroup.controls.MateriaAnio.touched || formGroup.controls.MateriaAnio.dirty || submitted) && formGroup.controls.MateriaAnio.errors?.pattern"> Dato numérico, 1 a 4 dígitos.</span>
+          </div>
+        </div>
+
+        <!--campo nombre materia-->
+        <div class="row form-group justify-content-center">
+          <label class="col-form-label col-sm-3" for="MateriaNombre">Nombre de Materia <span class="text-danger">*</span></label>
+          <div class="col-sm-8">
+            <input type="text" name="MateriaNombre" autocomplete="off" class="form-control" formControlName="MateriaNombre" [ngClass]="{'is-invalid':(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors, 'is-valid': !formGroup.controls.MateriaNombre.errors}" />
+            <span class="text-danger" *ngIf="(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors?.required"> Dato requerido. </span>
+            <span class="text-danger" *ngIf="(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors?.maxlength"> Dato texto, 1 a 55 caracteres. </span>
+          </div>
+        </div>
+      </fieldset>
+      <br>
+      <!-- Botones Grabar, Cancelar/Volver' -->
+      <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" (click)="Grabar()">
+                <span class="fas fa-check"></span> {{AccionABMC=='M' ? 'Modificar' : 'Grabar'}}
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-warning" (click)="Volver()">
+                <span class="fas fa-undo"></span> Cancelar
+        </button>
+      </div>
+      <br>
+      <!--texto: Revisar los datos ingresados...-->
+      <div id="divMsjformGroupistro" *ngIf="formGroup.invalid && submitted" class="row alert alert-danger">
+        <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
+      </div>
+
+    </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
