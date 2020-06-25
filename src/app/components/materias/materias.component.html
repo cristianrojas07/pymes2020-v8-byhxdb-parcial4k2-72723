@@ -9,7 +9,7 @@
       </div>
       <br>
       <table class="table table-bordered table-striped">
-        <caption>Lista de Materias</caption>
+        <caption>Listado Materias</caption>
         <thead class="thead-dark">
           <tr>
               <th class="text-center">ID Materia</th>
@@ -61,7 +61,7 @@
           <div class="col-sm-8">
             <input type="text" name="MateriaNombre" autocomplete="off" class="form-control" formControlName="MateriaNombre" [ngClass]="{'is-invalid':(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors, 'is-valid': !formGroup.controls.MateriaNombre.errors}" />
             <span class="text-danger" *ngIf="(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors?.required"> Dato requerido. </span>
-            <span class="text-danger" *ngIf="(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors?.maxlength"> Dato texto, 1 a 55 caracteres. </span>
+            <span class="text-danger" *ngIf="(formGroup.controls.MateriaNombre.touched || formGroup.controls.MateriaNombre.dirty || submitted) && formGroup.controls.MateriaNombre.errors?.maxlength"> Dato texto, 1 a 50 caracteres. </span>
           </div>
         </div>
       </fieldset>
