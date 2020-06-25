@@ -1,12 +1,16 @@
 <div class="container" *ngIf="AccionABMC == 'L'" >
   <h3 *ngIf="AccionABMC == 'L'">{{Titulo}} <small *ngIf="AccionABMC == 'L'">{{TituloAccionABMC[AccionABMC]}}</small></h3>
   <div>
-      <div class="row justify-content-center">
-        <button type="button" class="btn btn-primary" (click)="Agregar()"><span class="fas fa-plus"> </span> Agregar Materia</button>
+      <!-- Boton agregar -->
+      <div class="bg-light p-3 border">
+        <div class="row justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="Agregar()"><span class="fas fa-plus"> </span> Agregar Materia</button>
+        </div>
       </div>
       <br>
       <table class="table table-bordered table-striped">
-        <thead>
+        <caption>Lista de Materias</caption>
+        <thead class="thead-dark">
           <tr>
               <th class="text-center">ID Materia</th>
               <th class="text-center">Año de Materia</th>
