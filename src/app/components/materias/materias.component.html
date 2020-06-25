@@ -18,7 +18,7 @@
           <tr *ngFor="let materia of Materias">
               <td class="text-center">{{materia.IdMateria}}</td>
               <td class="text-center">{{materia.MateriaAnio }}</td>
-              <td class="text-center">{{materia.MateriaNombre || uppercase}}</td>
+              <td class="text-center">{{materia.MateriaNombre | uppercase}}</td>
               <td class="text-center text-nowrap">
                 <button type="button" class="btn btn-sm btn-outline-primary" title="Modificar" (click)="Modificar(materia)"><span class="fas fa-pencil-alt"></span>
                 </button>
